@@ -1,0 +1,32 @@
+{
+  "name": "express-example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env DEBUG=express-sequelize nodemon ./bin/www",
+    "test": "npm run test-unit && npm run test-integration1",
+    "test-unit": "cross-env NODE_ENV=test ./node_modules/.bin/mocha test/unit/*.test.js",
+    "test-integration": "cross-env NODE_ENV=test ./node_modules/.bin/mocha test/integration/*.test.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mv": "^2.1.1",
+    "mysql2": "^2.1.0",
+    "node-schedule": "^1.3.2",
+    "nodemailer": "^6.4.10",
+    "nodemon": "^2.0.4",
+    "promise": "^8.1.0",
+    "request": "^2.88.2",
+    "sequelize": "^6.2.4",
+    "uuid": "^8.2.0"
+  }
+}
