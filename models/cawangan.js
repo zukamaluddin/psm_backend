@@ -1,19 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var Jenama = sequelize.define('Jenama', {
+    var Position = sequelize.define('Cawangan', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         name: {type: DataTypes.STRING, allowNull: true},
-        date_created: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
+        sort: {type: DataTypes.STRING(10), allowNull: true}
 
     }, {
         timestamps: false,
         freezeTableName: true,
     });
-
-    return Jenama;
-
+    return Position;
 };

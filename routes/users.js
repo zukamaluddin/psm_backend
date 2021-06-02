@@ -6,16 +6,10 @@ const fs = require('fs');
 const path = require('path');
 const formidable = require('formidable');
 const {Op} = require("sequelize");
-const nodemailer = require('nodemailer');
-const auditTrail = require('../middleware/auditTraill/index.js');
-var moment = require('moment');
 
 const env = require('../config/config')['environment'];
 const config = require('../config/config')[env];
 const mv = require('mv');
-var authJWT = require("../middleware/auth/index.js")
-
-// router.use(authJWT.verifyToken);
 
 router.post('/list/:userid', async function (req, res) {
 

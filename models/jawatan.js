@@ -1,27 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var Lain = sequelize.define('Lain', {
+    var Jawatan = sequelize.define('Jawatan', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         name: {type: DataTypes.STRING, allowNull: true},
-        no: {type: DataTypes.STRING, allowNull: true},
-        jenis_id: {
-            type: DataTypes.UUID,
-            onDelete: 'CASCADE',
-            references: {
-                model: 'Jenis',
-                key: 'id'
-            }
-        },
+        sort: {type: DataTypes.STRING(10), allowNull: true}
 
     }, {
         timestamps: false,
         freezeTableName: true,
     });
 
-    return Lain;
+    return Jawatan;
 
 };

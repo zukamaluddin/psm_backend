@@ -6,9 +6,8 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        kegunaan: {type: DataTypes.STRING, allowNull: true},
-        no: {type: DataTypes.STRING, allowNull: true},
         name: {type: DataTypes.STRING, allowNull: true},
+        sort: {type: DataTypes.STRING(10), allowNull: true}
 
     }, {
         timestamps: false,

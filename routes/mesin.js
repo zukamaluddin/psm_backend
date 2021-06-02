@@ -4,7 +4,6 @@ var router = express.Router();
 let fs = require('fs');
 var path = require('path');
 let formidable = require('formidable');
-const auditTrail = require('../middleware/auditTraill/index.js');
 const {Op} = require("sequelize");
 
 

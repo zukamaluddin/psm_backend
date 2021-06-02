@@ -1,46 +1,27 @@
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-// var cookieParser = require('cookie-parser');
+
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var typeMaster = require('./config/config')['type'];
 
-var main = require('./routes/index');
+var laporan = require('./routes/laporan');
 var user = require('./routes/users');
-var owner = require('./routes/owner');
-var branch = require('./routes/branch');
-var alatan = require('./routes/alatan');
-var repairer = require('./routes/repairer');
-var payment = require('./routes/payment');
-var report = require('./routes/report');
-var bukku = require('./routes/bukku')
+var mesin = require('./routes/mesin');
 
-var jobs = require('./jobSchedule')
-
-// var auditTrail = require('./middleware/auditTraill/index.js');
 var app = express();
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(cors({origin: 'http://localhost:3001',credentials: true}));//if use cookie
+
 app.use(cors({origin: '*'}));//if use cookie
 
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(auditTrail.trace)
-
-app.use('/edata-be', main);
 app.use('/bernas/user', user);
-app.use('/edata-be/owner', owner);
-app.use('/edata-be/mesin', branch);
-app.use('/edata-be/alatan', alatan);
-app.use('/edata-be/repairer', repairer);
-app.use('/edata-be/payment', payment);
-app.use('/edata-be/report', report);
-app.use('/edata-be/bukku', bukku)
+app.use('/bernas/mesin', mesin);
+app.use('/bernas/laporan', laporan);
 
 app.use(function(req, res, next){
     res.header(
@@ -66,13 +47,6 @@ app.use(function (err, req, res, next) {
         error: (app.get('env') === 'development') ? err : {}
     });
 });
-
-//--- list jobs
-// if(typeMaster === 'master'){
-//     jobs.JobsInvoice();
-//     jobs.JobsContact();
-// }
-
 
 
 module.exports = app;
