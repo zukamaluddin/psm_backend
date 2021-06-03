@@ -6,8 +6,11 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+        month: {type: DataTypes.STRING, allowNull: true},
         year: {type: DataTypes.STRING, allowNull: true},
         batchNo: {type: DataTypes.STRING, allowNull: true},
+        processName : {type: DataTypes.STRING, allowNull: true},
+        cawangan: {type: DataTypes.STRING, allowNull: true},
         date_created: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
         isdeleted: {type: DataTypes.BOOLEAN, defaultValue: false},
         isFinish: {type: DataTypes.BOOLEAN, defaultValue: false},

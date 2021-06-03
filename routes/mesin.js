@@ -152,7 +152,7 @@ router.get('/get-current/:ibdId', async function (req, res) {
             obj['ibdNo'] = data.ibdNo
             arrResult.push(obj)
         } 
-        console.log(arrResult)
+        // console.log(arrResult)
         res.send({data: arrResult})
     });
     
