@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         suhu: {type: DataTypes.STRING, allowNull: true},
         depan: {type: DataTypes.STRING, allowNull: true},
         tengah: {type: DataTypes.STRING, allowNull: true},
+        belakang: {type: DataTypes.STRING, allowNull: true},
+        date_captured: {type: DataTypes.STRING, allowNull: true},
         date_created: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
-        date_submit: {type: DataTypes.DATE},
         created_by: {type: DataTypes.STRING(36), allowNull: true},
         laporan_id: {
             type: DataTypes.UUID,

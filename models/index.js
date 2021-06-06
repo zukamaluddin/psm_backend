@@ -28,7 +28,7 @@ var jenisModel = jenis(sequelize, DataTypes);
 var mesinModel = mesin(sequelize, DataTypes);
 
 laporanModel.hasMany(processModel, {as: 'laporan', foreignKey: 'laporan_id'})
-processModel.belongsTo(laporanModel, {foreignKey: 'alatan_id', as: 'laporan'});
+processModel.belongsTo(laporanModel, {foreignKey: 'laporan_id', as: 'laporan'});
 
 
 db.sequelize = sequelize;
