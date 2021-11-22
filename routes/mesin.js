@@ -5,25 +5,42 @@ let fs = require('fs');
 var path = require('path');
 let formidable = require('formidable');
 const {Op} = require("sequelize");
+const { User } = require('../models');
 
 
 router.post('/list/:userid',  async function (req, res) {
-    db.Mesin.findAndCountAll({
-        // where: {
-        //     cawangan: {
-        //         [Op.like]: '%' + req.body.cawangan + '%'
-        //     },
-        //     ibdNo: {
-        //         [Op.like]: '%' + req.body.ibdNo + '%'
-        //     },
-        //     status: {
-        //         [Op.like]: '%' + req.body.status + '%'
-        //     },
-        //     rfidNo: {
-        //         [Op.like]: '%' + req.body.rfidNo + '%'
-        //     },
 
-        // },
+    user = await db.User.findOne({
+        where: {id : req.params.userid}
+    });
+    
+    wheres = {}
+    if(user.jawatan == "HQ"){
+        wheres = {};
+    }else{
+        wheres = {
+            cawangan: user.cawangan
+        };
+    }
+    
+    if (req.body.ibdNo !== "") {
+        wheres.ibdNo = {[Op.like]: '%' + req.body.ibdNo + '%'}
+    }
+
+    if (req.body.rfidNo !== "") {
+        wheres.rfidNo = {[Op.like]: '%' + req.body.rfidNo + '%'}
+    }
+
+    if (req.body.cawangan !== "") {
+        wheres.cawangan = {[Op.like]: '%' + req.body.cawangan + '%'}
+    }
+
+    if (req.body.serialno !== "") {
+        wheres.serialNo = {[Op.like]: '%' + req.body.serialno + '%'}
+    }
+    db.Mesin.findAndCountAll({
+        where: wheres
+        ,
         // order: [[req.body.sorted[0].id, req.body.sorted[0].desc ? 'ASC' : 'DESC']],
         limit: req.body.pageSize,
         offset: req.body.page * req.body.pageSize,
@@ -123,7 +140,9 @@ router.put('/update', function (req, res) {
 router.get('/get-all-branches/:cawangan', async function (req, res) {
     getCawangan = req.params.cawangan;
     db.Mesin.findAll(
-        {where: {cawangan: getCawangan}}
+        {where: {cawangan: getCawangan},
+        order: [['createdAt', 'ASC']],
+    }
     ).then(function (result) {
 
         let arrResult = []

@@ -196,6 +196,43 @@ router.post('/change_password/:userid', async function (request, response) {
     response.send({status: 'OK', msg: 'Password updated'})
 });
 
+router.post('/login', async function (req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    var user = await db.User.findOne({
+        where: {email: email, password: password
+        }
+    });
+
+    if (user) {
+        if(["HQ","Manager Cawangan"].includes(user.jawatan) ){
+            user.token = uuidv4();
+            await user.save();
+            res.send({
+                status: 'OK',
+                token: "",
+                userid: user.id,
+                branch_id: "01b3ce72-7206-405b-80e1-32668123e46e",
+                name: user.name,
+                role: "Administrator",
+                position: user.jawatan,
+                jawatan: user.jawatan,
+                cawangan: user.cawangan,
+                picture: "",
+            })
+        }else{
+            res.send({status: 'FAILED', msg: 'Pengguna tidak berdaftar!'})
+        }
+        
+
+
+    } else {
+        res.send({status: 'FAILED', msg: 'Emel atau kata laluan salah!'})
+    }
+
+
+});
 
 router.post('/login_mobile', async function (req, res) {
     const form = new formidable.IncomingForm();

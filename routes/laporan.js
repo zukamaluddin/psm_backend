@@ -69,6 +69,20 @@ router.get('/get_ibd/:ibdId',  async function (req, res) {
 });
 
 
+router.get('/get_details/:laporanID',  async function (req, res) {
+    laporan = await db.Laporan.findOne({
+        where: {id : req.params.laporanID}
+    }).then(async function (result) {
+        await db.Process.findAll({
+            where: {laporan_id : req.params.laporanID},
+            order: [['date_created', 'ASC']]
+        }).then(function (result1) {
+            res.send({data: [result], data1: result1, count: 0})
+        })
+    });
+});
+
+
 router.post('/add_lopran',  async function (req, res) {
 
     const form = new formidable({multiples: true});
@@ -81,6 +95,9 @@ router.post('/add_lopran',  async function (req, res) {
     yearNow = dateNow.getFullYear();
 
     form.parse(req, async function (err, fields, files) {
+
+        console.log(fields.staffId)
+
         let laporan_id_exist = "";
         if(fields.processName == "Intake Start"){
             laporan_id_exist = await db.Laporan.create({
@@ -152,5 +169,157 @@ router.post('/add_lopran',  async function (req, res) {
 
     
 });
+
+router.get('/mobile_alls/:cawangan',  async function (req, res) {
+
+    processList = ["Intake Start", "Intake End", "Blower /CHF start", "Blower / CHF End", "Record Temperature", "Sack-Off Start", "Sack-End"]
+    const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+    dateNow = new Date();
+    monthNo = dateNow.getMonth();
+    monthNow = monthNames[dateNow.getMonth()];
+    yearNow = dateNow.getFullYear();
+
+    db.Laporan.findAll({
+        where : { month: monthNow, year: yearNow, isdeleted : false, 
+            isFinish: false, cawangan: req.params.cawangan },
+            order: [['date_created', 'ASC']],
+        include: [{
+            model: db.Mesin, as: 'mesin'
+        }],
+        raw: true
+    }).then(result => {
+        let items = [];
+        result.forEach((item, index) => {
+            let lapor = {
+                id: item['id'],
+                month: item['month'],
+                year: item['year'],
+                batchNo: item['batchNo'],
+                processName: item['processName'],
+                cawangan: item['cawangan'],
+                mesinId: item['mesin_id'],
+                mesinName: item['mesin.ibdNo']
+            }
+            items.push(lapor);
+        })
+        
+        res.send(items);
+    })
+});
+
+
+
+router.post('/list/:userid',  async function (req, res) {
+
+    const form = new formidable({multiples: true});
+
+    form.parse(req, async function (err, fields, files) {
+        let data = JSON.parse(fields.data);
+
+        user = await db.User.findOne({
+            where: {id : req.params.userid}
+        });
+    
+        wheres = {}
+        if(user.jawatan == "HQ"){
+            wheres = {};
+        }else{
+            wheres = {
+                cawangan: user.cawangan
+            };
+        }
+
+        if (data.batchNo !== "") {
+            wheres.batchNo = {[Op.like]: '%' + data.batchNo + '%'}
+        }
+    
+        if (data.year !== "") {
+            wheres.year = {[Op.like]: '%' + data.year + '%'}
+        }
+    
+        // if (req.body.cawangan !== "") {
+        //     wheres.cawangan = {[Op.like]: '%' + req.body.cawangan + '%'}
+        // }
+    
+        if (data.month !== "") {
+            wheres.month = {[Op.like]: '%' + data.month + '%'}
+        }
+
+        db.Laporan.findAndCountAll({
+            where: wheres
+            //     ibdNo: {
+            //         [Op.like]: '%' + req.body.ibdNo + '%'
+            //     },
+            //     status: {
+            //         [Op.like]: '%' + req.body.status + '%'
+            //     },
+            //     rfidNo: {
+            //         [Op.like]: '%' + req.body.rfidNo + '%'
+            //     },
+    
+            ,
+            order: [['date_created', 'DESC']],
+            // order: [[req.body.sorted[0].id, req.body.sorted[0].desc ? 'ASC' : 'DESC']],
+            limit: data.pageSize,
+            offset: data.page * data.pageSize,
+        }).then(function (result) {
+            let totalPageNum = Math.ceil(result.count / data.pageSize);
+
+            res.send({data: result.rows, count: totalPageNum})
+        });
+        // res.send({data: [], count: 0})
+    });
+    
+});
+
+router.post('/view/:userid/:laporanID',  async function (req, res) {
+
+        laporan = await db.Laporan.findOne({
+            where: {id : req.params.laporanID}
+        }).then(async function (result) {
+            await db.Process.findAll({
+                where: {laporan_id : req.params.laporanID},
+                order: [['date_created', 'ASC']]
+            }).then(function (result1) {
+                res.send({data: result, data1: result1, count: 0})
+            })
+        });
+
+    
+        // wheres = {}
+        // if(user.jawatan == "HQ"){
+        //     wheres = {};
+        // }else{
+        //     wheres = {
+        //         cawangan: user.cawangan
+        //     };
+        // }
+        // console.log(req.body)
+        // db.Laporan.findAndCountAll({
+        //     where: wheres
+        //     //     ibdNo: {
+        //     //         [Op.like]: '%' + req.body.ibdNo + '%'
+        //     //     },
+        //     //     status: {
+        //     //         [Op.like]: '%' + req.body.status + '%'
+        //     //     },
+        //     //     rfidNo: {
+        //     //         [Op.like]: '%' + req.body.rfidNo + '%'
+        //     //     },
+    
+        //     ,
+        //     // order: [[req.body.sorted[0].id, req.body.sorted[0].desc ? 'ASC' : 'DESC']],
+        //     limit: data.pageSize,
+        //     offset: data.page * data.pageSize,
+        // }).then(function (result) {
+        //     let totalPageNum = Math.ceil(result.count / data.pageSize);
+        //     console.log(result.rows)
+        //     res.send({data: result.rows, count: totalPageNum})
+        // });
+        
+
+    
+});
+
 
 module.exports = router;

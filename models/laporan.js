@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id'
             }
         },
-        created_by: {type: DataTypes.STRING(36), allowNull: true},
+        created_by: {type: DataTypes.STRING(500), allowNull: true},
     }, {
         timestamps: false,
         freezeTableName: true,

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         belakang: {type: DataTypes.STRING, allowNull: true},
         date_captured: {type: DataTypes.STRING, allowNull: true},
         date_created: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
-        created_by: {type: DataTypes.STRING(36), allowNull: true},
+        created_by: {type: DataTypes.STRING(500), allowNull: true},
         laporan_id: {
             type: DataTypes.UUID,
             onDelete: 'CASCADE',
