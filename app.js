@@ -8,6 +8,9 @@ var cors = require('cors');
 var laporan = require('./routes/laporan');
 var user = require('./routes/users');
 var mesin = require('./routes/mesin');
+var tugasan = require('./routes/tugasan');
+var lantikan = require('./routes/lantikan');
+// var tetapan = require('./routes/tetapan');
 
 var app = express();
 app.use(logger('dev'));
@@ -21,6 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/bernas/user', user);
 app.use('/bernas/mesin', mesin);
+app.use('/bernas/tugasan', tugasan);
+app.use('/bernas/lantikan', lantikan);
+// app.use('/bernas/tetapan', tetapan);
 app.use('/bernas/laporan', laporan);
 
 app.use(function(req, res, next){

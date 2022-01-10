@@ -1,22 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var Lantikan = sequelize.define('Lantikan', {
+    var Tugasan = sequelize.define('Tugasan', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         title: {type: DataTypes.STRING, allowNull: true},
-        staffName: {type: DataTypes.STRING, allowNull: true},
-        staffId: {type: DataTypes.STRING, allowNull: true},
-        dateAssigned: {type: DataTypes.STRING, allowNull: true},
         dateStart: {type: DataTypes.STRING, allowNull: true},
         dateEnd: {type: DataTypes.STRING, allowNull: true},
-        jawatanPentadbiran: {type: DataTypes.STRING, allowNull: true},
-        jawatanGred: {type: DataTypes.STRING, allowNull: true},
-        jawatanGenerik: {type: DataTypes.STRING, allowNull: true},
         description: {type: DataTypes.STRING, allowNull: true},
-        updatedBy: {type: DataTypes.STRING, allowNull: true},
+        status: {type: DataTypes.STRING, allowNull: true},
+        report: {type: DataTypes.STRING, allowNull: true},
         createdBy: {type: DataTypes.STRING, allowNull: true},
         isDeleted: {type: DataTypes.BOOLEAN, defaultValue: false},
         sort: {type: DataTypes.STRING(10), allowNull: true}
@@ -24,5 +19,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
         freezeTableName: true,
     });
-    return Lantikan;
+    return Tugasan;
 };

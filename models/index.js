@@ -10,6 +10,11 @@ var process = require('./process');
 var jenis = require('./jenis');
 
 var mesin = require('./mesin');
+var JawatanGenerik = require('./jawatanGenerik')
+var JawatanGred = require('./jawatanGred')
+var JawatanPentadbiran = require('./jawatanPentadbiran')
+var Lantikan = require('./lantikan')
+var Tugasan = require('./tugasan')
 
 const env = require(__dirname + '/../config/config.js')['environment'];
 const config = require(__dirname + '/../config/config.js')[env];
@@ -26,6 +31,11 @@ var processModel = process(sequelize, DataTypes);
 var jenisModel = jenis(sequelize, DataTypes);
 
 var mesinModel = mesin(sequelize, DataTypes);
+var JawatanGenerikModel = JawatanGenerik(sequelize, DataTypes);
+var JawatanGredModel = JawatanGred(sequelize, DataTypes);
+var JawatanPentadbiranModel = JawatanPentadbiran(sequelize, DataTypes);
+var LantikanModel = Lantikan(sequelize, DataTypes);
+var TugasanModel = Tugasan(sequelize, DataTypes);
 
 laporanModel.hasMany(processModel, {as: 'laporan', foreignKey: 'laporan_id'})
 laporanModel.belongsTo(mesinModel, {foreignKey: 'mesin_id', as: 'mesin'});
@@ -44,5 +54,10 @@ db.Process = processModel;
 db.Jenis = jenisModel;
 
 db.Mesin = mesinModel;
+db.JawatanGenerik = JawatanGenerikModel;
+db.JawatanGred = JawatanGredModel;
+db.JawatanPentadbiran = JawatanPentadbiranModel;
+db.Lantikan = LantikanModel;
+db.Tugasan = TugasanModel;
 
 module.exports = db;
