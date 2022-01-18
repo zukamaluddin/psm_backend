@@ -20,18 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b45f2c4-4211-4b2b-bb06-4d8800ddf23c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/psm_backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/tugasan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/lantikan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/tugasan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/jawatanLantikan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/lantikan.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/lantikan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/lantikan.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/lantikan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/setting.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +75,11 @@
       <workItem from="1641655643997" duration="1024000" />
       <workItem from="1641824465385" duration="2644000" />
       <workItem from="1641830075290" duration="418000" />
+      <workItem from="1641995401215" duration="4043000" />
+      <workItem from="1642087175585" duration="1533000" />
+      <workItem from="1642169923010" duration="7676000" />
+      <workItem from="1642255486032" duration="9104000" />
+      <workItem from="1642504770998" duration="2613000" />
     </task>
     <servers />
   </component>
@@ -103,10 +103,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080/-1600.0.1600.900@0.0.1920.1080" timestamp="1641830482009" />
-    <state x="743" y="441" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1641830420433">
+    <state x="743" y="441" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1642169968502">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="743" y="441" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1080/-1600.0.1600.900@0.0.1920.1080" timestamp="1641830420433" />
+    <state x="743" y="441" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1080/-1600.0.1600.900@0.0.1920.1080" timestamp="1642169968502" />
     <state x="616" y="250" key="run.anything.popup" timestamp="1641393425790">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

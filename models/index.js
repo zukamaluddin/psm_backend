@@ -13,6 +13,7 @@ var mesin = require('./mesin');
 var JawatanGenerik = require('./jawatanGenerik')
 var JawatanGred = require('./jawatanGred')
 var JawatanPentadbiran = require('./jawatanPentadbiran')
+var JawatanLantikan = require('./jawatanLantikan')
 var Lantikan = require('./lantikan')
 var Tugasan = require('./tugasan')
 
@@ -34,6 +35,7 @@ var mesinModel = mesin(sequelize, DataTypes);
 var JawatanGenerikModel = JawatanGenerik(sequelize, DataTypes);
 var JawatanGredModel = JawatanGred(sequelize, DataTypes);
 var JawatanPentadbiranModel = JawatanPentadbiran(sequelize, DataTypes);
+var JawatanLantikanModel = JawatanLantikan(sequelize, DataTypes);
 var LantikanModel = Lantikan(sequelize, DataTypes);
 var TugasanModel = Tugasan(sequelize, DataTypes);
 
@@ -57,6 +59,7 @@ db.Mesin = mesinModel;
 db.JawatanGenerik = JawatanGenerikModel;
 db.JawatanGred = JawatanGredModel;
 db.JawatanPentadbiran = JawatanPentadbiranModel;
+db.JawatanLantikan = JawatanLantikanModel;
 db.Lantikan = LantikanModel;
 db.Tugasan = TugasanModel;
 
