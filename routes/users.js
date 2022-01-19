@@ -125,7 +125,7 @@ router.get('/view/:id', function (req, res) {
         where: {id: req.params.id},
     },).then(async function (data) {
         if (data) {
-            console.log(data, "@@@@");
+            // console.log(data, "@@@@");
             res.send({
                 // picture: data.picture,
                 id: data.id,
