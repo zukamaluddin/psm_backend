@@ -3,7 +3,7 @@ const env = 'development';
 module.exports = {
     development: {
         username: 'root',
-        password: 'P@ssw0rd123',
+        password: '',
         database: 'bernas',
         host: 'localhost',
         dialect: 'mysql',

@@ -167,7 +167,7 @@ router.post('/update/:userid', function (request, response) {
             user.email = data.email;
         }
 
-        if ('role' in data) {
+        if ('jawatan' in data) {
             user.jawatan =  data.role;
         }
 
@@ -206,31 +206,44 @@ router.post('/login', async function (req, res) {
     });
 
     if (user) {
-        if(["HQ","Manager Cawangan"].includes(user.jawatan) ){
-            user.token = uuidv4();
-            await user.save();
-            res.send({
-                status: 'OK',
-                token: "",
-                userid: user.id,
-                branch_id: "01b3ce72-7206-405b-80e1-32668123e46e",
-                name: user.name,
-                role: "Administrator",
-                position: user.jawatan,
-                jawatan: user.jawatan,
-                cawangan: user.cawangan,
-                picture: "",
-            })
-        }else{
-            res.send({status: 'FAILED', msg: 'Pengguna tidak berdaftar!'})
-        }
-        
+        // if(["HQ","Manager Cawangan"].includes(user.jawatan) ){
+        //     user.token = uuidv4();
+        //     await user.save();
+        //     res.send({
+        //         status: 'OK',
+        //         token: "",
+        //         userid: user.id,
+        //         branch_id: "01b3ce72-7206-405b-80e1-32668123e46e",
+        //         name: user.name,
+        //         role: "Administrator",
+        //         position: user.jawatan,
+        //         jawatan: user.jawatan,
+        //         cawangan: user.cawangan,
+        //         picture: "",
+        //     })
+        // }else{
+        //     res.send({status: 'FAILED', msg: 'Pengguna tidak berdaftar!'})
+        // }
+        user.token = uuidv4();
+        await user.save();
+        res.send({
+            status: 'OK',
+            token: "",
+            userid: user.id,
+            branch_id: "01b3ce72-7206-405b-80e1-32668123e46e",
+            name: user.name,
+            role: "Administrator",
+            position: user.jawatan,
+            jawatan: user.jawatan,
+            cawangan: user.cawangan,
+            picture: "",
+        })
+
 
 
     } else {
         res.send({status: 'FAILED', msg: 'Emel atau kata laluan salah!'})
     }
-
 
 });
 
